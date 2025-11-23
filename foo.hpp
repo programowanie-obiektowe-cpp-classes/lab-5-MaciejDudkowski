@@ -7,21 +7,16 @@
 
 std::vector< char > foo(std::list< Human >& people)
 {
-    {
-        std::vector< char > result;
-        result.reserve(people.size());
+    std::vector< char > result;
+    result.reserve(people.size());
 
-        for (Human& h : people) {
-            h.birthday();
-        }
-
-        for (auto it = people.rbegin(); it != people.rend(); ++it) {
-            if (it->isMonster()) {
-                result.push_back('n');
-            }
-            else {
-                result.push_back('y');
-            }
-        }
-        return {};
+    for (Human& h : people) {
+        h.birthday();
     }
+
+    for (auto it = people.rbegin(); it != people.rend(); ++it) {
+        result.push_back(it->isMonster() ? 'n' : 'y');
+    }
+
+    return result;
+}
